@@ -1,9 +1,10 @@
 
+import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
 /* eslint-disable react/prop-types */
-const CoffeeCard = ({ coffee }) => {
+const CoffeeCard = ({ coffee ,coffees, setCoffees  }) => {
   const {_id, name, quantity, supplier, taste, category, details, photo } = coffee;
 
   const handleDelete = _id =>{
@@ -18,8 +19,6 @@ const CoffeeCard = ({ coffee }) => {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          
-
           fetch(`http://localhost:5000/coffee/${_id}`,{
             method:'DELETE'
           })
@@ -32,6 +31,7 @@ const CoffeeCard = ({ coffee }) => {
                     'Your file has been deleted.',
                     'success'
                   )
+                  // const rema
             }
           })
         }
@@ -53,7 +53,9 @@ const CoffeeCard = ({ coffee }) => {
         <div className="card-actions justify-end">
           <div className="btn-group btn-group-vertical">
             <button className="btn ">View</button>
+            <Link to={`updateCoffee/${_id}`}>
             <button className="btn">Edit</button>
+            </Link>
             <button
             onClick={()=> handleDelete(_id)}
             className="btn">Delete</button>
