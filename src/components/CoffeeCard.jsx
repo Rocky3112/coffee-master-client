@@ -31,7 +31,8 @@ const CoffeeCard = ({ coffee ,coffees, setCoffees  }) => {
                     'Your file has been deleted.',
                     'success'
                   )
-                  // const rema
+                  const remaining = coffees.filter(cof =>cof._id !== _id);
+                  setCoffees(remaining)
             }
           })
         }
